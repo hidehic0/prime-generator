@@ -88,7 +88,12 @@ mod tests {
     fn check_prime_test() {
         assert_eq!(check_prime(2), true);
         assert_eq!(check_prime(341), false);
+        assert_eq!(check_prime(1729), false);
         assert_eq!(check_prime(998244353), true);
+        assert_eq!(check_prime(2305843009213693951), true);
+        assert_eq!(check_prime(256), false);
+        assert_eq!(check_prime(2696910492149275857), false);
+        assert_eq!(check_prime(4870395676773890257), true);
     }
 }
 
