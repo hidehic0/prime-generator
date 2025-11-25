@@ -27,7 +27,7 @@ fn mod_pow(mut a: i128, mut n: i128, m: i128) -> i128 {
     let mut res = 1;
 
     while n != 0 {
-        if n % 2 == 0 {
+        if n % 2 != 0 {
             res = (res * a) % m;
         }
         a = (a * a) % m;
