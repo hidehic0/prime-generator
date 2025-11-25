@@ -107,6 +107,12 @@ fn main() {
     }
 
     for _ in 0..args.m {
-        println!("{}", create_number(args.n, &mut rng))
+        let mut n = create_number(args.n, &mut rng);
+
+        while !check_prime(n as i128) {
+            n = create_number(args.n, &mut rng);
+        }
+
+        println!("{}", n)
     }
 }
