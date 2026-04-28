@@ -99,20 +99,25 @@ mod tests {
 
 fn main() {
     let args = Args::parse();
-    let mut rng = rand::rng();
 
     if args.n >= 18 {
         println!("this tool supports generating prime numbers up to 17 digits");
         process::exit(1);
     }
 
-    for _ in 0..args.m {
-        let mut n = create_number(args.n, &mut rng);
+    std::thread::scope(|s| {
+        for _ in 0..args.m {
+            let dight = args.n;
+            s.spawn(move || {
+                let mut rng = rand::rng();
+                let mut n = create_number(dight, &mut rng);
 
-        while !check_prime(n as i128) {
-            n = create_number(args.n, &mut rng);
+                while !check_prime(n as i128) {
+                    n = create_number(dight, &mut rng);
+                }
+
+                println!("{}", n)
+            });
         }
-
-        println!("{}", n)
-    }
+    })
 }
